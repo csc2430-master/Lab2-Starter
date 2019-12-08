@@ -208,4 +208,4 @@ The following aspects are going to be consider during grading. Make sure you com
 - Catches errors gracefully, the program does not crash on incorrect input
 - The program outputs the information in the specified format
 - The assignment follows all the instructions
-- In general the program does not crash (except in when you enter an expression that causes zero division)
+- In general the program does not crash 

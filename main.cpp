@@ -109,6 +109,9 @@ int main() {
 //          size - current number of words in database
 // Returns:
 //      true indicates database successfully built, false indicates a problem
+//  Possible Errors:
+//      could not read file
+//      database full
 bool BuildDatabase(const string& fileName, int capacity, string words[], int counts[], int scores[], int& size) {
     assert(false);
     return false;

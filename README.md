@@ -83,7 +83,8 @@ When you write the function *BuildDatabase* you get another chance to develop yo
 
   *	Get the numerical score
   *	Get the rest of the line
-  *	Break this line into “words”.  For each “word” you see call *AddWordToDatabase* to record the “word” and associated score in the database.  Hint: the *find* and *substr* methods of the string class are useful.
+  *	Break this line into “words”.  For each “word” you see, call *AddWordToDatabase* to record the “word” and associated score in the database.  
+  HINT: there are multiple correct ways to write this logic, but you may want to consider using an *istringstream* object.
 
 Before going further, spend enough time to check carefully that you are calling *AddWordToDatabase* with the correct words.
 

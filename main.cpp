@@ -7,6 +7,7 @@
 // Author: **<Fill in with your name>
 
 #include <fstream>
+#include <sstream>
 #include <chrono>
 #include <assert.h>
 #include "database.h"

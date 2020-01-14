@@ -54,6 +54,7 @@ For example,
 *	The words *This* and *this* (case matters!) each appear once.  “This” appears on line 2 which has a rating of 4, so its average score is 4.  “this” appears on line 1 which has a rating of 1, so its average score is 1.
 *	The word *beautiful* does not appear on any line.  It is not stored in the database, but when you query for its rating, the neutral rating of 2.0 is displayed.
 
+<!--
 In general:
 
 ![formula1](https://latex.codecogs.com/gif.latex?score%28word%29%3D%5Csum_%7Bline%7D%7Bscore_%7Bline%7D*occurrences%28word%29_%7Bline%7D%7D)
@@ -63,85 +64,85 @@ Where:
  Variable | Description
  ---|---
  ![formula2](https://latex.codecogs.com/gif.latex?score_%7Bline%7D) | Is the score of the line you are currently reading
- ![formula3](https://latex.codecogs.com/gif.latex?occurences(word)_%7Bline%7D) | Is the number of occurences of that word on the line
+ ![formula3](https://latex.codecogs.com/gif.latex?occurences(word)_%7Bline%7D) | Is the number of occurrences of that word on the line
  
  For a given word, you read all the lines and calculate the value for each line and add them together. You will need to do this for each word.
 
-
+-->
 
 ## Files you are given
 In this lab, you are given all the files you will need for your CLion project.  
 
 * **CMakeLists.txt** - This contains the information necessary to build the project.  This file should not be modified.
 
-*	**main.cpp** – This file contains a completed main routine (which should not be modified) and a skeleton of the function *BuildDatabase* that you need to write.
+*	**main.cpp** – This file contains a completed `main` routine (which should not be modified) and a skeleton of the function `BuildDatabase` that you need to write.
 
 *	**database.h** – This file has been completed for you.  It declares the four database interface functions used to access the database ADT.  These functions will be implemented in **database.cpp**.  This file should not be modified.
 
-*	**database.cpp** – Except for *#include* and the definition of the constant neutral, the rest of this file’s implementation is left up to you.  You should finish the header comment for the file and add implementations for the four database interface functions.   Make sure a header comment precedes each of these four functions. 
+*	**database.cpp** – Except for `#include` and the definition of the constant neutral, the rest of this file’s implementation is left up to you.  You should finish the header comment for the file and add implementations for the four database interface functions.   Make sure a header comment precedes each of these four functions. 
 
 ##	Recommended first step
 
 It is strongly recommended that you start by stubbing out the four functions in **database.cpp**.  In other words, add a skeleton implementation of each function to **database.cpp**.  That way your project will build, because right now the link step will fail with undefined references.
 
-When you stub out *AddWordToDatabase* it would be a very good idea to have it temporarily print a line that said it was called and the values of the word and score parameters.  That will make it easier for you to check that your implementation of *BuildDatabase* is working correctly.
+When you stub out `AddWordToDatabase` it would be a very good idea to have it temporarily print a line that said it was called and the values of the word and score parameters.  That will make it easier for you to check that your implementation of `BuildDatabase` is working correctly.
 
-## Implementing *BuildDatabase*
+## Implementing `BuildDatabase`
 
-When you write the function *BuildDatabase* you get another chance to develop your skill in using the *string* class.  In addition, you will practice reading from a text file.  Here’s a rough sketch of what you need to do:
+When you write the function `BuildDatabase` you get another chance to develop your skill in using the `string` class.  In addition, you will practice reading from a text file.  Here’s a rough sketch of what you need to do:
 
-1.	Open the file for reading.  You should check whether the file can be opened.  If not, you should print an informative message that includes the file name and return *false*.
+1.	Open the file for reading.  You should check whether the file can be opened.  If not, you should print an informative message that includes the file name and return `false`.
 
-2.	Call *InitDatabase* to initialize the database.  
+2.	Call `InitDatabase` to initialize the database.  
 
 3.	Begin a loop that continues until you hit the end of the file.  On each iteration of the loop
 
   *	Get the numerical score
   *	Get the rest of the line
-  *	Break this line into “words”.  For each “word” you see, call *AddWordToDatabase* to record the “word” and associated score in the database.  
-  HINT: there are multiple correct ways to write this logic, but you may want to consider using an *istringstream* object.
+  *	Break this line into “words”.  For each “word” you see, call `AddWordToDatabase` to record the “word” and associated score in the database.  
+  HINT: there are multiple correct ways to write this logic, but you may want to consider using an `istringstream` object.
 
-Before going further, spend enough time to check carefully that you are calling *AddWordToDatabase* with the correct words.
+Before going further, spend enough time to check carefully that you are calling `AddWordToDatabase` with the correct words.
 
-Here’s the start of what you might see with a correct implementation of *BuildDatabase*, and a stubbed implementation of *AddWordToDatabase* that prints a message showing the values of the parameters word and score:
+Here’s the start of what you might see with a correct implementation of `BuildDatabase`, and a stubbed implementation of `AddWordToDatabase` that prints a message showing the values of the parameters `word` and `score`:
 
 ![BuildDatabase](/images/SentimentAnalysis-p1-image4.png)
 
-Don’t forget to check the return value of *AddWordToDatabase*.  If it returns *false*, then you need to stop building the database and return *false*.
+Don’t forget to check the return value of `AddWordToDatabase`.  If it returns `false`, then you need to stop building the database and return `false`.
 
-Note: the following parameters passed into *BuildDatabase* (capacity, words, counts, scores, and size) are part of the database ADT.  You will pass them as parameters to *InitDatabase* and *AddWordToDatabase*, but you must not examine or modify their values when you implement *BuildDatabase*.  Doing so would violate the rules of it being an ABSTRACT data type.
+Note: the following parameters passed into `BuildDatabase`: `capacity`, `words`, `counts`, `scores`, and `size` are part of the database ADT.  You will pass them as parameters to `InitDatabase` and `AddWordToDatabase`, but you must not examine or modify their values when you implement `BuildDatabase`, you may only call the functions of the ADT (the functions on `database.h`.  Doing so would violate the rules of it being an ABSTRACT data type.
 
 ## Implementing the database
 
-You will be using three parallel arrays: *words*, *counts*, and *scores* to implement your database.   In this assignment, the *words* array will not be sorted.
+You will be using three parallel arrays: `words`, `counts`, and `scores` to implement your database.   In this assignment, the `words` array will not be sorted.
 
 The memory space for these arrays has been declared within the main function, and these arrays along with their capacity (the maximum number of words that can be stored in each array) and their current size (the number of words currently stored) are passed to the database interface functions in almost every call.
 
-Yes, passing all these variables as parameters makes the code awkward!  One way to eliminate it would be to use global variables.  But we're not going to use global variables.  As we go through the course, we'll see how to clean this up.  For instance, in the next lab you will see how if we use a *struct* we will only have to pass one paramter.  Later in the course, when we learn how define our own classes, we won't have to pass any parameters!
+Yes, passing all these variables as parameters makes the code awkward!  One way to eliminate it would be to use global variables.  But we're not going to use global variables.  As we go through the course, we'll see how to clean this up.  For instance, in the next lab you will see how if we use a `struct` we will only have to pass one parameter.  Later in the course, when we learn how define our own classes, we won't have to pass any parameters!
 
 Here are some notes about implementing each of these functions:
 
-1.	*InitDatabase*
+1.	`InitDatabase`
 
 This function must be called once before adding words to the database.  All it needs to do is set the number of entries stored in the database to zero.
 
 
-2.	*AddWordToDatabase*
+2.	`AddWordToDatabase`
 
-This function first iterates through the *words* array to determine if *word* already appears in the array.  If it does, it increments the corresponding occurrence count by 1, adds the score to the score total, and returns true.
-If it doesn’t find *word* in the *words* array, it will make sure that the number of elements stored hasn’t reach its maximum.  If this is the case, it simply returns *false* to signal failure. 
+This function first iterates through the `words` array to determine if `word` already appears in the array.  If it does, it increments the corresponding occurrence count by 1, adds the score to the score total, and returns true.
+    If it does not find word in the `words` array, it will make sure that the number of elements stored has not reach its maximum.  If this is the case, it simply returns `false` to signal failure. 
 
-Otherwise, it will add *word* to the end of the *words* array, add 1 to the end of the occurrence counts array, and add *score* to the end of the score totals array.  Don’t forget to increase the count of elements in the array that are filled!  You should return *true* to indicate success.
+Otherwise, it will add `word` to the end of the `words` array, add 1 to the end of the occurrence counts array, and add `score` to the end of the score totals array.  Don’t forget to increase the count of elements in the array that are filled!  You should return `true` to indicate success.
 
-3. *FindWordInDatabase*
+3. `FindWordInDatabase`
 
-This function will iterate through the *words* array to determine if *word* appears in the array.  If it is found, it returns count of occurrences in the *occurrences* parameter, and the average score in *averageScore* parameter.  If it is not found, *occurrences* should be set to 0 and *averageScore* to *neutral*.
+This function will iterate through the `words` array to determine if `word` appears in the array.  If it is found, it returns count of occurrences in the `occurrences` parameter, and the average score in `averageScore` parameter.  If it is not found, `occurrences` should be set to 0 and `averageScore` to `neutral`.
 
-4. *GetInfoAboutDatabase*
+4. `GetInfoAboutDatabase`
 
-This function will iterate through the entire database and keep track of the minimum and maximum count of occurrences, and the minimum and maximum average scores.  The *numberWords* parameter simply returns the count of elements stored in the database.  
+This function will iterate through the entire database and keep track of the minimum and maximum count of occurrences, and the minimum and maximum average scores.  The `numberWords` parameter simply returns the count of elements stored in the database.  
 
-## Addtional files for testing
+## Additional files for testing
 
 Make sure you test your code thoroughly.  You should do your own testing of course, but for your convenience we are providing two files representing extreme edge cases: **noReviews.txt** and **tooManyReviews.txt**.  Here’s what you should expect to see in these cases.
 
@@ -153,7 +154,7 @@ Make sure you test your code thoroughly.  You should do your own testing of cour
 Your program needs to be orderly and readable.  If you are working a development team and don’t write clean looking code, you will be unpopular among your colleagues and may not work on that team very long.  Because of this your program will be graded on style as well as correctness.  Please refer to the style guidelines discussed in class and in reading assignments concerning
 
   *	Indention of code
-  *	Consistent use of {}, preferably Stroustrup style
+  *	Consistent use of {}, preferably Stroustrup style (Check [Indentation Styles](https://en.wikipedia.org/wiki/Indentation_style))
   *	Meaningful names of identifiers
   *	Naming conventions for identifiers (camelCase for variables, CamelCase for function names. First word of a function name typically should be a verb.)
   *	No use of global variables. Global variables sometimes are appropriate, but not in the assignments we will be giving this quarter.
@@ -191,11 +192,11 @@ Each subordinate function should also start with a header that describes what it
 You should include additional comments in your code to describe what you are doing.   If it is hard to understand what a variable is for, add a comment after it.   It possible, though, to put in too many comments, so be judicious and make sure you have time left to do well in your other classes when it comes to commenting.
 
 ## Submitting your code
-Your solution should be contained within files that were provided.  You MUST NOT modify the main routine, **CMakeFiles.txt** or **database.h**.
+Your solution should be contained within files that were provided.  You MUST NOT modify the `main` routine, **CMakeFiles.txt** or **database.h**.
 
 Make sure you test your code thoroughly.  We will try your code with our own test files, and we will programmatically test your database ADT with our own test program.  
 
-Your code needs to be submitted through GitHub Classroom.  You will need to push your last version of your program before the lab deadline. As a good programming practice remember to commit frequently and to push every time you have a functioning version of your code.
+Your code needs to be submitted by pushing into GitHub.  You will need to push your last version of your program before the lab deadline. As a good programming practice remember to commit frequently and to push every time you have a functioning version of your code.
 
 ## Grading
 Correctness is essential.  Make sure your solution builds as described above and correctly handles the test cases displayed in the screen shot.  We will test on other input values as well. Your code must compile and should not have runtime errors (crash).

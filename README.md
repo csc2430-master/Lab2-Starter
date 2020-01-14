@@ -55,7 +55,17 @@ For example,
 *	The word *beautiful* does not appear on any line.  It is not stored in the database, but when you query for its rating, the neutral rating of 2.0 is displayed.
 
 In general:
-![formula1](https://latex.codecogs.com/gif.latex?score%3D%5Csum_%7Bline%7D%7Bscore_%7Bline%7D*occurences_%7Bline%7D%7D)
+
+![formula1](https://latex.codecogs.com/gif.latex?score%28word%29%3D%5Csum_%7Bline%7D%7Bscore_%7Bline%7D*occurrences%28word%29_%7Bline%7D%7D)
+
+Where:
+
+ Variable | Description
+ ---|---
+ ![formula2](https://latex.codecogs.com/gif.latex?score_%7Bline%7D) | Is the score of the line you are currently reading
+ ![formula3](https://latex.codecogs.com/gif.latex?occurences(word)_%7Bline%7D) | Is the number of occurences of that word on the line
+ 
+ For a given word, you read all the lines and calculate the value for each line and add them together. You will need to do this for each word.
 
 
 

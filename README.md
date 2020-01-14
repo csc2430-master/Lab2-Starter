@@ -164,7 +164,7 @@ Your program needs to be orderly and readable.  If you are working a development
     
 At the start of your file you should have a header comment that gives the title of the assignment, the purpose, and your name.  Here is an example (from Lab 1) of what that could look like:
 
-      ```
+      
       /*
           Title:      Lab 1 – evalSteps.cpp
           Purpose:    implement the GetEvalSteps functions called by the main program to generate the evaluation
@@ -172,10 +172,10 @@ At the start of your file you should have a header comment that gives the title 
           Author:     Sally Johnson
           Date:       January 6, 2020
       */
-      ```
+      
 Each subordinate function should also start with a header that describes what it does, it’s parameters, what it returns, and how errors are handled.  Here is an example (again from Lab 1):
 
-    ```
+   
     // Produce a string of evaluation steps for simplifying an expression
     // For example:
     //      if “2+3*4-5”  is passed to this function, the string “2+3*4-5 = 2+12-5\n        = 14-5\n        = 9”
@@ -187,7 +187,7 @@ Each subordinate function should also start with a header that describes what it
     // Possible Error Conditions: 
     //      If evaluating the expression causes division by zero, this function crash.
     //      If evaluating the expression causes an oveflow, the results may not be reliable.
-    ```
+   
 
 You should include additional comments in your code to describe what you are doing.   If it is hard to understand what a variable is for, add a comment after it.   It possible, though, to put in too many comments, so be judicious and make sure you have time left to do well in your other classes when it comes to commenting.
 

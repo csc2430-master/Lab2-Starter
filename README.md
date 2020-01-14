@@ -55,7 +55,8 @@ For example,
 *	The word *beautiful* does not appear on any line.  It is not stored in the database, but when you query for its rating, the neutral rating of 2.0 is displayed.
 
 In general:
-https://latex.codecogs.com/gif.latex?score%3D%5Csum_%7Bline%7D%7Bscore_%7Bline%7D*occurences_%7Bline%7D%7D
+![formula1](https://latex.codecogs.com/gif.latex?score%3D%5Csum_%7Bline%7D%7Bscore_%7Bline%7D*occurences_%7Bline%7D%7D)
+
 
 
 ## Files you are given

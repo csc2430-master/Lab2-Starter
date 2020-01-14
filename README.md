@@ -3,7 +3,7 @@
 **_Sentiment Analysis_** -  “The process of computationally identifying and categorizing opinions expressed in a piece of  text, especially in order to determine whether the writer's attitude towards a particular topic, product, etc. is positive, negative, or neutral.”  - Oxford Dictionaries.
 
 ## Goal
-Write a C++ program that reads a file of movie reviews extracted from the Rotten Tomatoes movie website and uses it to build a database containing the words found in the file.   Your program will use this database to tell you whether a word indicates a generally positive, negative, or neutral sentiment.  This assignment will give you 1) more practice working with the *string* class, 2) practice working with 1-dimensional arrays,  3) experience reading text files, 4) allow you to implement the word database as an abstract data type (ADT). 
+Write a C++ program that reads a file of movie reviews extracted from the Rotten Tomatoes movie website and uses it to build a database containing the words found in the file.   Your program will use this database to tell you whether a word indicates a generally positive, negative, or neutral sentiment.  This assignment will give you 1) more practice working with the `string` class, 2) practice working with 1-dimensional arrays,  3) experience reading text files, 4) allow you to implement the word database as an abstract data type (ADT). 
 
 ## Sample Run
 
@@ -17,7 +17,7 @@ The program starts by prompting for the name of a file.  The file **aFewReviews.
 
 The program will build the database from the information in the file.  Afterwards, it prints out how long this process takes.  Your times will likely differ from the ones shown in the screenshots.
 
-To give you some idea of whether your database implementation is correct, the program alos prints summary information about the database.  The information your implementation prints should match what you see.
+To give you some idea of whether your database implementation is correct, the program also prints summary information about the database.  The information your implementation prints should match what you see.
 
 The program then enters a loop where the user is repeatedly prompted to enter a word.  For each word the user entered, the program responds by printing its occurrence and average score.  When a blank line is entered, the program terminates.
 
@@ -43,7 +43,7 @@ When the program opens a movie review file, it reads it line by line.  First it 
 * *seeking*
 * *.*
 
-Note that a comma by itself or a period by itself is treated as a “word.”  If there were no blank characters between the letters of a word and the punctuation mark, then the letters and the punctuation mark together would form a “word.”  Blank characters what are used to break the string into words, but the blanks themselves never are “words” themselves.
+Note that a comma by itself or a period by itself is treated as a “word.”  If there were no blank characters between the letters of a word and the punctuation mark, then the letters and the punctuation mark together would form a “word.”  Blank characters are used to break the string into words, but the blanks themselves never are “words” themselves.
 
 Each time the program encounters a “word” it will record it in your in-memory “word database.” This database keeps track of how many times each word is seen (occurrence count) and maintains a running total of rating numbers (score total).
 
@@ -53,6 +53,10 @@ For example,
 *	The word *is* appears twice in the first review, and once in the second review.  Hence it will be stored in the database with occurrence count 3, and the score total will be 1+1+4 = 6.  Its average rating is 6/3 =2.
 *	The words *This* and *this* (case matters!) each appear once.  “This” appears on line 2 which has a rating of 4, so its average score is 4.  “this” appears on line 1 which has a rating of 1, so its average score is 1.
 *	The word *beautiful* does not appear on any line.  It is not stored in the database, but when you query for its rating, the neutral rating of 2.0 is displayed.
+
+In general:
+https://latex.codecogs.com/gif.latex?score%3D%5Csum_%7Bline%7D%7Bscore_%7Bline%7D*occurences_%7Bline%7D%7D
+
 
 ## Files you are given
 In this lab, you are given all the files you will need for your CLion project.  

@@ -14,7 +14,7 @@ const double neutral = 2.0;
 // **The information is to stored in the set of parallel arrays: words, occurrenceCounts, scoreTotal
 // **which are passed as parameters.  The words array should NOT be sorted, but should not contain any
 // **duplicates.  The parameter "size" records the current number of slots of the arrays which are filled.
-// **The parameter "capaacity" specifies the maximum number of slots in each of the arrays.  If you were to
+// **The parameter "capacity" specifies the maximum number of slots in each of the arrays.  If you were to
 // **call AddWordToDatabase with a new word, and the current value of "size" was equal to "capacity" the
 // **the function would not do the insertion and return false instead of true.
 

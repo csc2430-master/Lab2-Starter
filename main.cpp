@@ -26,7 +26,7 @@ bool BuildDatabase(const string& fileName, int capacity, string words[], int cou
 //
 // Then the main program will repeatedly prompt the user to enter a word.  The word
 // will be looked up in the movie database, and its average score will be printed.
-int main() {
+int main(int argc, char* argv[]) {
 
     // Declaration of word database structure
     //      NOTE: Main program is only allowed to access
